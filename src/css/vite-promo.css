@@ -24,16 +24,27 @@
   text-align: center;
 }
 .main-title-gradient {
-  display: block;
+  display: inline-block;
   font-size: 2em;
   background-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
 }
+
+ a.main-title-gradient {
+   font-size: 2.5em;
+   font-weight: bold;
+ }
 @media only screen and (min-width: 768px) {
+
+  a.main-title-gradient {
+      font-size: 5em;
+      font-weight: bold;
+    }
+
   .main-title-gradient {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
 .main-title-link {
