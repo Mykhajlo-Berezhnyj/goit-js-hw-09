@@ -11,18 +11,33 @@
     <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
 
     <main class="main-centered">
-      <!-- Loads the specified .html file -->
+      <!-- Loads the specified .html file , -->
       <ul class="ul-menu">
         <li>
-          <a class="main-title-gradient" href="./1-gallery.html">Gallery</a>
+          <a href="./1-gallery.html" class="link-with-preview">
+            <span class="link-text">Gallery</span>
+            <img
+              src="./img/preview.jpg"
+              alt="Прев’ю Gallery"
+              class="preview-image"
+            />
+          </a>
         </li>
-        <li><a class="main-title-gradient" href="./2-form.html">Form</a></li>
+        <li>
+          <a href="./2-form.html" class="link-with-preview">
+            <span class="link-text">Form</span>
+            <img
+              src="./img/previewform.jpg"
+              alt="Прев’ю Form"
+              class="preview-image"
+            />
+          </a>
+        </li>
       </ul>
     </main>
 
     <load src="./partials/footer.html" />
 
-    <script type="module" src="./js/1-gallery.js"></script>
     <script type="module" src="./js/2-form.js"></script>
   </body>
 </html>
