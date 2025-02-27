@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page 3</title>
-    <script type="module" crossorigin src="/goit-js-hw-09/assets/styles-QisN4L8j.js"></script>
-    <script type="module" crossorigin src="/goit-js-hw-09/assets/vendor-B3jAGxuR.js"></script>
-    <script type="module" crossorigin src="/goit-js-hw-09/assets/2-form-5om2yHfc.js"></script>
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-09/assets/styles-DnJYDUY5.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-09/assets/vendor-AL2zCFOW.css">
+    <script type="module" crossorigin src="/goit-js-hw-09/assets/styles-671W-kik.js"></script>
+    <script type="module" crossorigin src="/goit-js-hw-09/assets/2-form-C4--tS3g.js"></script>
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-09/assets/styles-9bfYKeaB.css">
   </head>
   <body>
     <header class="header">
@@ -45,12 +43,23 @@
         <form class="feedback-form" autocomplete="off">
           <label>
             Email
-            <input type="email" name="email" autofocus />
+            <input
+              type="email"
+              name="email"
+              placeholder="example@com.ua"
+              autofocus
+            />
           </label>
+          <p id="email-error" class="email-txt"></p>
           <label>
             Message
-            <textarea name="message" rows="8"></textarea>
+            <textarea
+              name="message"
+              rows="8"
+              placeholder="Введіть своє повідомлення"
+            ></textarea>
           </label>
+          <p class="message-counter"></p>
           <button type="submit">Submit</button>
         </form>
         <a class="back-link" href="./index.html">Go back</a>
