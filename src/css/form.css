@@ -8,7 +8,6 @@
     box-shadow: 2px 2px 4px #41d1ff;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     justify-content: center;
     align-items: center;
 
@@ -26,13 +25,33 @@
 
 .feedback-form input[type="email"],
 .feedback-form textarea {
+   
  width: 100%;
  padding: 10px;
  border: 2px solid #41d1ff;
  border-radius: 8px;
  box-shadow: 2px 2px 4px #bd34fe;
 outline: none;
- 
+}
+
+.feedback-form input[type="email"].valid {
+    outline: rgb(6, 224, 6);
+}
+
+
+.email-txt {
+    min-height: 18px;
+}
+.error-message {
+    color: #b80404;
+    font-size: 12px; 
+
+   
+}
+
+
+.feedback-form textarea {
+    padding-bottom: 20px;
 }
 
 .feedback-form button {
@@ -48,14 +67,26 @@ outline: none;
     border-radius: 12px;
     align-items: center;
     cursor: pointer;
+    margin-top: 24px;
 }
 
 .feedback-form button:hover {
     background: linear-gradient(130deg, #41d1ff 30%, #bd34fe);
+    transform: scale(1.1);
 }
 
 .feedback-form input[type="email"]:focus,
 .feedback-form textarea:focus {
     outline: 2px solid #bd34fe;
     border: 1px solid #41d1ff;
+}
+
+input[type="email"].error {
+    outline: 2px solid red;
+    border: #ff0000;
+}
+
+input[type="email"].error:focus {
+    outline: 2px solid red;
+    border: #ff0000;
 }
