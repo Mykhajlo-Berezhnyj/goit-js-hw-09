@@ -1,107 +1,114 @@
 .feedback-form {
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 10px;
-    border: 2px solid #bd34fe;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    box-shadow: 2px 2px 4px #41d1ff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 2px solid #bd34fe;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 4px #41d1ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .feedback-form label {
-    position: relative;
-    width: 100%;
-    padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-weight: bold;
-    color:#bd34fe;
+  position: relative;
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: bold;
+  color: #bd34fe;
 }
 
-.feedback-form input[type="email"],
+.feedback-form input[type='email'],
 .feedback-form textarea {
- width: 100%;
- padding: 10px;
- border: 2px solid #41d1ff;
- border-radius: 8px;
- box-shadow: 2px 2px 4px #bd34fe;
-outline: none;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #41d1ff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px #bd34fe;
+  outline: none;
 }
 
 .count-number {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    font-size: 10px;
-    pointer-events: none;
-
-
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 10px;
+  pointer-events: none;
 }
-.feedback-form input[type="email"].valid {
-    outline: rgb(6, 224, 6);
+.feedback-form input[type='email'].valid {
+  outline: rgb(6, 224, 6);
 }
 
 .error-message {
-    position: absolute;
-    bottom: 0;
-    color: #b80404;
-    font-size: 12px; 
-   
+  position: absolute;
+  bottom: 0;
+  color: #91063b;
+  font-size: 12px;
 }
 
-
 .feedback-form textarea {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .feedback-form button {
-    display: block;
-    min-width: 100px;
-    max-width: 50%;
-    padding: 10px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    text-shadow: 1px 2px 4px white;
-    background: linear-gradient(130deg, #bd34fe 30%, #41d1ff);
-    border: 1px solid orangered;
-    border-radius: 12px;
-    align-items: center;
-    cursor: pointer;
-    margin-top: 24px;
+  display: block;
+  min-width: 100px;
+  max-width: 50%;
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  text-shadow: 1px 2px 4px white;
+  background: linear-gradient(130deg, #bd34fe 30%, #41d1ff);
+  border: 1px solid orangered;
+  border-radius: 12px;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 24px;
 }
 
 .feedback-form button:hover {
-    background: linear-gradient(130deg, #41d1ff 30%, #bd34fe);
-    transform: scale(1.1);
+  background: linear-gradient(130deg, #41d1ff 30%, #bd34fe);
+  transform: scale(1.1);
 }
 
-.feedback-form input[type="email"]:focus,
+.feedback-form input[type='email']:focus,
 .feedback-form textarea:focus {
-    outline: 2px solid #bd34fe;
-    border: 1px solid #41d1ff;
+  outline: 2px solid #bd34fe;
+  border: 2px solid #41d1ff;
 }
 
-input[type="email"].error {
-    outline: 2px solid red;
-    border: #ff0000;
+input[type='email'].error {
+  outline: 2px solid red;
+  border: #ff0000;
 }
 
-input[type="email"].error:focus {
-    outline: 2px solid red;
-    border: #ff0000;
+input[type='email'].error:focus {
+  outline: 2px solid red;
+  border: #ff0000;
 }
 
 .count-number {
-    position: absolute;
-    bottom: 0px;
-    right: 10px;
-    font-size: 10px;
-    pointer-events: none;
-    color: #bd34fe;
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  font-size: 10px;
+  pointer-events: none;
+  color: #bd34fe;
+}
+
+.message-counter {
+  position: absolute;
+  bottom: 0px;
+  left: 24px;
+  font-size: 12px;
+  pointer-events: none;
+  color: #91063b;
+}
+
+.hidden {
 }
