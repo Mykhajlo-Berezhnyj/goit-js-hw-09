@@ -1,5 +1,5 @@
 .feedback-form {
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
     padding: 10px;
     border: 2px solid #bd34fe;
@@ -14,10 +14,11 @@
 }
 
 .feedback-form label {
+    position: relative;
     width: 100%;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
     align-items: flex-start;
     font-weight: bold;
     color:#bd34fe;
@@ -25,7 +26,6 @@
 
 .feedback-form input[type="email"],
 .feedback-form textarea {
-   
  width: 100%;
  padding: 10px;
  border: 2px solid #41d1ff;
@@ -34,18 +34,24 @@
 outline: none;
 }
 
+.count-number {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 10px;
+    pointer-events: none;
+
+
+}
 .feedback-form input[type="email"].valid {
     outline: rgb(6, 224, 6);
 }
 
-
-.email-txt {
-    min-height: 18px;
-}
 .error-message {
+    position: absolute;
+    bottom: 0;
     color: #b80404;
     font-size: 12px; 
-
    
 }
 
@@ -89,4 +95,13 @@ input[type="email"].error {
 input[type="email"].error:focus {
     outline: 2px solid red;
     border: #ff0000;
+}
+
+.count-number {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    font-size: 10px;
+    pointer-events: none;
+    color: #bd34fe;
 }

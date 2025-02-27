@@ -2,9 +2,10 @@ const feedbackForm = document.querySelector('.feedback-form');
 const emailInput = feedbackForm.elements.email;
 const messageInput = feedbackForm.elements.message;
 const localStorageKey = "feedback-form-state";
-const maxCount = 500;
+const maxCount = 400;
 const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const errorMessage = document.getElementById('email-error');
+const countNumber = document.getElementById('countNumber');
  
 
 let formData = {
@@ -37,7 +38,7 @@ function saveToLocalStr(event) {
     console.log("🚀 ~ feedbackForm.addEventListener ~  formData:", formData);
     
     validateEmail(formData.email);
-
+     counterNumber(formData.message);
     // записуємо значення formData локальне сховище
    
          localStorage.setItem(localStorageKey, JSON.stringify(formData));
@@ -80,3 +81,8 @@ function validateEmail(email) {
 
 }
 
+function counterNumber(message) {
+    const currentLength = messageInput.value.length;
+   countNumber.textContent = `${currentLength}/${maxCount}`
+ 
+}
