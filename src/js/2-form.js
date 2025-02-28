@@ -62,7 +62,8 @@ feedbackForm.addEventListener('submit', event => {
   feedbackForm.reset();
   counterNumber(messageInput);
   countNumber.textContent = `0/${maxCount}`;
-  messageCounter.classList.add('hidden');
+    messageCounter.classList.add('hidden');
+    chek.classList.add('hidden');
 });
 
 
