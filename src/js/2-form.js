@@ -7,7 +7,7 @@ const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const errorMessage = document.getElementById('email-error');
 const countNumber = document.getElementById('countNumber');
 const messageCounter = document.querySelector('.message-counter');
-const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s]/g;
+const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s,/]/g;
 
 let formData = {
   email: '',
@@ -64,18 +64,21 @@ feedbackForm.addEventListener('submit', event => {
   formData.message = '';
   feedbackForm.reset();
   counterNumber(messageInput);
+  countNumber.textContent = `0/${maxCount}`;
+  messageCounter.classList.add('hidden');
 });
 
 // проводимо валідацію введеного емайл
 function validateEmail(emailInput) {
   //забороняємо кирилицю
-  const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s,/]/g;
+
   let email = emailInput.value;
   // додаємо заборону вводу кирилецею. та знаків табуляції
   emailInput.value = email.replace(stopRegex, '');
   if (stopRegex.test(email)) {
     errorMessage.classList.add('error-message');
-    errorMessage.textContent = 'Для вводу використовуйте латиницю!';
+    errorMessage.textContent =
+      'Будь ласка не використовуйте кирилицю чи табуляцію при вводі!';
     return;
   }
 
@@ -120,7 +123,7 @@ function counterNumber(messageInput) {
   }
 }
 
-//забороняємо набір тексту коли досягнуто макимальнох кількості тексту
+//забороняємо набір тексту, коли досягнуто макимальнох кількості тексту
 feedbackForm.addEventListener('keydown', stopInputMsg);
 
 function stopInputMsg(event) {
@@ -134,8 +137,25 @@ function stopInputMsg(event) {
   if (
     event.target.value.length >= maxCount &&
     event.key !== 'Delete' &&
-    event.code !== 'Backspace'
+    event.code !== 'Backspace' &&
+    event.code !== 'ArrowRight' &&
+    event.code !== 'ArrowLeft' &&
+    event.code !== 'ArrowUp' &&
+    event.code !== 'ArrowDown'
   ) {
     event.preventDefault();
   }
+}
+
+//Дозоляємо вставку тільки тексту з доступною кількістю символів
+messageInput.addEventListener('paste', cutPaste);
+
+function cutPaste(event) {
+  event.preventDefault();
+  const message = event.target.value;
+  const availableLength = maxCount - message.length;
+  const pasteText = event.clipboardData.getData('text');
+  const cutPasteMessage = pasteText.substring(0, availableLength);
+  event.target.value = message + cutPasteMessage;
+  counterNumber(event.target);
 }
