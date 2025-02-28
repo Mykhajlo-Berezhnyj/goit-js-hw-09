@@ -57,7 +57,7 @@
   top: 0%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  width: 250px;
+  width: 150px;
   opacity: 0;
   visibility: hidden;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -65,6 +65,14 @@
   background: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+@media only screen and (min-width: 768px) { 
+  .preview-image {
+   width: 250px;
+  }
+}
+
+
 
 .link-with-preview:hover .preview-image {
   visibility: visible;

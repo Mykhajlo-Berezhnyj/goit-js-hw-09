@@ -53,11 +53,17 @@
 }
 
 .error-message {
+  display: block;
   position: absolute;
+  width: 100%;
   bottom: 0px;
   color: #91063b;
-  font-size: 12px;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 
 .chek {
     display: block;
@@ -105,7 +111,7 @@ input[type='email'].error:focus {
 
 .count-number {
   position: absolute;
-  bottom: 22px;
+  bottom: 23px;
   right: 4px;
   font-size: 10px;
   pointer-events: none;

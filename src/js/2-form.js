@@ -129,10 +129,10 @@ function counterNumber(messageInput) {
     if (currentLength >= maxCount) {
       messageCounter.innerHTML = `❗ Ви досягли ліміту в ${maxCount} символів. Якщо маєте додаткові пропозиції, надішліть їх на  
    <a href="mailto:info@goit.ua">info@goit.ua</a>.`;
-      messageCounter.style.bottom = '2px';
+      messageCounter.style.bottom = '0';
     } else {
       messageCounter.textContent = `⚠ У Вас залишилося доступних ${avalibleLength} символів`;
-      messageCounter.style.bottom = '20px';
+      messageCounter.style.bottom = '16px';
     }
   } else {
     messageCounter.classList.add('hidden');
