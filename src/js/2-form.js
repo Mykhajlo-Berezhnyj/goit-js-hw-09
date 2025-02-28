@@ -8,7 +8,7 @@ const errorMessage = document.getElementById('email-error');
 const chek = document.querySelector('.chek');
 const countNumber = document.getElementById('countNumber');
 const messageCounter = document.querySelector('.message-counter');
-const stopRegex = /[^a-zA-Z0-9._@-]/g;
+const stopRegex = /[^a-zA-Z0-9._@-]/;
 
 let formData = {
   email: '',
@@ -39,10 +39,11 @@ feedbackForm.addEventListener('input', saveToLocalStr);
 
 function saveToLocalStr(event) {
   // записуємо значення інпут в formData, перед записом позбуваємося лишніх знаків табуляції(пробіл і ентер)
-  formData[event.target.name] = event.target.value.trim();
-
   validateEmail(emailInput);
   counterNumber(messageInput);
+  formData[event.target.name] = event.target.value.trim();
+  console.log("🚀 ~ saveToLocalStr ~ formData:", formData)
+  
 
   // записуємо значення formData локальне сховище
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
@@ -64,12 +65,28 @@ feedbackForm.addEventListener('submit', event => {
   messageCounter.classList.add('hidden');
 });
 
+
+
 // проводимо валідацію введеного емайл
 function validateEmail(emailInput) {
+  //console.log("🚀 ~ validateEmail ~ FirstemailInput.value:", emailInput.value)
   let email = emailInput.value;
-  // додаємо заборону вводу кирилецею. та знаків табуляції
-  emailInput.value = email.replace(stopRegex, '');
-  if (stopRegex.test(email)) {
+    // додаємо заборону вводу кирилецею. та знаків табуляції
+    
+ // emailInput.value = emailInput.value.replace(stopRegex, '');
+ // console.log("🚀 replaseInputValue ~ replaseeEmailInput.value:", emailInput.value)
+ 
+    //попередній метод не підійшов, браузер автоматично міняв в домені  перший символ кирилиці в Punycode;
+    //Використовуєм подію beforeinput
+    emailInput.addEventListener('beforeinput', (event) => {
+    const inputChar = event.data;
+    if (stopRegex.test(inputChar)) {
+        event.preventDefault();
+    }
+});
+
+    
+    if (stopRegex.test(email)) {
     chek.classList.add('hidden');
     errorMessage.classList.add('error-message');
     errorMessage.textContent =
