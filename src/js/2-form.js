@@ -29,6 +29,10 @@ if (emailInput.value) {
   validateEmail(emailInput);
 }
 
+if (messageInput.value) {
+  counterNumber(messageInput);
+}
+
 //Додаємо слухача на input і використовуючи делегування вішаєм його на форму
 feedbackForm.addEventListener('input', saveToLocalStr);
 
@@ -59,10 +63,13 @@ feedbackForm.addEventListener('submit', event => {
   formData.email = '';
   formData.message = '';
   feedbackForm.reset();
+  counterNumber(messageInput);
 });
 
+// проводимо валідацію введеного емайл
 function validateEmail(emailInput) {
-  const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s]/g;
+  //забороняємо кирилицю
+  const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s,/]/g;
   let email = emailInput.value;
   // додаємо заборону вводу кирилецею. та знаків табуляції
   emailInput.value = email.replace(stopRegex, '');
@@ -91,6 +98,7 @@ function validateEmail(emailInput) {
   }
 }
 
+// підраховуємо кількість симолів і виводимо інфо
 function counterNumber(messageInput) {
   const message = messageInput.value;
   const currentLength = message.length;
@@ -98,7 +106,36 @@ function counterNumber(messageInput) {
   const avalibleLength = maxCount - currentLength;
   if (currentLength > maxCount * 0.9) {
     messageCounter.classList.remove('hidden');
-    messageCounter.textContent = `У Вас залишилося доступних ${avalibleLength} символів`;
+
+    if (currentLength >= maxCount) {
+      messageCounter.innerHTML = `Ви досягли ліміту в ${maxCount} символів. Якщо маєте додаткові пропозиції, надішліть їх на  
+   <a href="mailto:info@goit.ua">info@goit.ua</a>.`;
+      messageCounter.style.bottom = '2px';
+    } else {
+      messageCounter.textContent = `У Вас залишилося доступних ${avalibleLength} символів`;
+      messageCounter.style.bottom = '20px';
+    }
+  } else {
+    messageCounter.classList.add('hidden');
   }
-  messageCounter.classList.add('hidden');
+}
+
+//забороняємо набір тексту коли досягнуто макимальнох кількості тексту
+feedbackForm.addEventListener('keydown', stopInputMsg);
+
+function stopInputMsg(event) {
+  console.log(
+    '🚀 ~ stopInputMsg ~ event.target.tagName:',
+    event.target.tagName
+  );
+  if (event.target.tagName.toLowerCase() !== 'textarea') {
+    return;
+  }
+  if (
+    event.target.value.length >= maxCount &&
+    event.key !== 'Delete' &&
+    event.code !== 'Backspace'
+  ) {
+    event.preventDefault();
+  }
 }
