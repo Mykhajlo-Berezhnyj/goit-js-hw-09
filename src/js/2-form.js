@@ -157,5 +157,6 @@ function cutPaste(event) {
   const pasteText = event.clipboardData.getData('text');
   const cutPasteMessage = pasteText.substring(0, availableLength);
   event.target.value = message + cutPasteMessage;
-  counterNumber(event.target);
+    counterNumber(event.target);
+    saveToLocalStr(event)
 }
