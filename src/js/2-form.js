@@ -5,9 +5,10 @@ const localStorageKey = 'feedback-form-state';
 const maxCount = 400;
 const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const errorMessage = document.getElementById('email-error');
+const chek = document.querySelector('.chek');
 const countNumber = document.getElementById('countNumber');
 const messageCounter = document.querySelector('.message-counter');
-const stopRegex = /[а-яА-ЯёЁіІїЇєЄґҐ\s,/]/g;
+const stopRegex = /[^a-zA-Z0-9._@-]/g;
 
 let formData = {
   email: '',
@@ -20,7 +21,7 @@ formData = {
   email: savedData.email || '',
   message: savedData.message || '',
 };
-console.log('🚀 ~ formData:', formData);
+//console.log('🚀 ~ formData:', formData);
 
 // заповнюємо дані полів вводу
 emailInput.value = formData.email;
@@ -39,17 +40,12 @@ feedbackForm.addEventListener('input', saveToLocalStr);
 function saveToLocalStr(event) {
   // записуємо значення інпут в formData, перед записом позбуваємося лишніх знаків табуляції(пробіл і ентер)
   formData[event.target.name] = event.target.value.trim();
-  console.log('🚀 ~ feedbackForm.addEventListener ~  formData:', formData);
 
   validateEmail(emailInput);
   counterNumber(messageInput);
-  // записуємо значення formData локальне сховище
 
+  // записуємо значення formData локальне сховище
   localStorage.setItem(localStorageKey, JSON.stringify(formData));
-  console.log(
-    '🚀 ~ feedbackForm.addEventListener ~ localStorage:',
-    localStorage
-  );
 }
 
 // Додаємо слухача на кнопку submit, перевірку на пусті поля, якщо все ок: виводимо дані в консоль і все очищуємо
@@ -70,34 +66,36 @@ feedbackForm.addEventListener('submit', event => {
 
 // проводимо валідацію введеного емайл
 function validateEmail(emailInput) {
-  //забороняємо кирилицю
-
   let email = emailInput.value;
   // додаємо заборону вводу кирилецею. та знаків табуляції
   emailInput.value = email.replace(stopRegex, '');
   if (stopRegex.test(email)) {
+    chek.classList.add('hidden');
     errorMessage.classList.add('error-message');
     errorMessage.textContent =
-      'Будь ласка не використовуйте кирилицю чи табуляцію при вводі!';
+          '❗ Будь ласка не використовуйте кирилицю чи табуляцію при вводі!';
+      
     return;
   }
-
   if (!email) {
     emailInput.classList.remove('error');
     errorMessage.classList.remove('error-message');
     errorMessage.textContent = '';
-    return;
+      return;
   }
   if (!regex.test(email)) {
     console.log('🚀 ~ validateEmail ~ !regex.test(email):', !regex.test(email));
+    chek.classList.add('hidden');
     emailInput.classList.add('error');
     errorMessage.classList.add('error-message');
     errorMessage.textContent =
-      'Некорректний або неповний email! Перевірте правильність вводу!';
+      '❗ Некорректний або неповний email! Перевірте правильність вводу!';
   } else {
     emailInput.classList.remove('error');
     errorMessage.classList.remove('error-message');
     errorMessage.textContent = '';
+    chek.classList.remove('hidden');
+    
   }
 }
 
@@ -111,11 +109,11 @@ function counterNumber(messageInput) {
     messageCounter.classList.remove('hidden');
 
     if (currentLength >= maxCount) {
-      messageCounter.innerHTML = `Ви досягли ліміту в ${maxCount} символів. Якщо маєте додаткові пропозиції, надішліть їх на  
+      messageCounter.innerHTML = `❗ Ви досягли ліміту в ${maxCount} символів. Якщо маєте додаткові пропозиції, надішліть їх на  
    <a href="mailto:info@goit.ua">info@goit.ua</a>.`;
       messageCounter.style.bottom = '2px';
     } else {
-      messageCounter.textContent = `У Вас залишилося доступних ${avalibleLength} символів`;
+      messageCounter.textContent = `⚠ У Вас залишилося доступних ${avalibleLength} символів`;
       messageCounter.style.bottom = '20px';
     }
   } else {
@@ -157,6 +155,6 @@ function cutPaste(event) {
   const pasteText = event.clipboardData.getData('text');
   const cutPasteMessage = pasteText.substring(0, availableLength);
   event.target.value = message + cutPasteMessage;
-    counterNumber(event.target);
-    saveToLocalStr(event)
+  counterNumber(event.target);
+  saveToLocalStr(event);
 }

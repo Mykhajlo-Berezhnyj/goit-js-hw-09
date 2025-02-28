@@ -59,6 +59,13 @@
   font-size: 12px;
 }
 
+.chek {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 45px;
+}
+
 .feedback-form button {
   display: block;
   min-width: 100px;
